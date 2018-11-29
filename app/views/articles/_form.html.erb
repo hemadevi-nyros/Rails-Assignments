@@ -1,26 +1,26 @@
 <%= form_with model: @article, local: true do |form| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@article.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+ <div class="form-group">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %><br>
+    <%= form.text_area :description, class: 'form-control' %>
+ </div>
+  <div class="form-group">
+    <%= form.label :category %><br>
+   <%= form.select :category, [["Action","Action"], ["Horror","Horror"], ["Adventure","Adventure"], ["Kids","Kids"], ["Comedy","Comedy"], ["Tech","Tech"], ["Love","Love"], ], { prompt: "Select..." }, { class: "form-control", required: true } %>
+ </div>
+ <div class="form-group">
+   <%= form.label :upload %><br>  
+   <%= form.file_field :attachment %>   
+  </div>
+  <div class="form-group"> 
+    <%= form.check_box :is_published %><%= form.label :is_published %> 
+ </div>
+  <div class="form-group">
+    <%= link_to 'Back', articles_path, class: 'btn btn-warning' %>
+    <%= form.submit 'Save', class: 'btn btn-success' %>
+ </div>
 <% end %>
+    

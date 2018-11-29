@@ -16,13 +16,14 @@ class ArticlesController < ApplicationController
   end
  
   def create
-    @article = Article.new(article_params)
- 
-    if @article.save
-      redirect_to @article
-    else
-      render 'new'
-    end
+   @article = Article.new(article_params)
+
+     if  @article.save
+       redirect_to @article, notice: 'Article was successfully created'
+     else
+       render :new
+     end 
+
   end
  
   def update
@@ -44,6 +45,8 @@ class ArticlesController < ApplicationController
  
   private
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit( :name, :description, :category, :upload, :checkbox)
     end
 end
+
+
