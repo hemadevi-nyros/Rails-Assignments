@@ -3,7 +3,6 @@ class CreateArticles < ActiveRecord::Migration[5.2]
     create_table :articles do |t|
       t.string :name
       t.text :description
-      t.string :category
       t.string :upload
       t.boolean :checkbox
 

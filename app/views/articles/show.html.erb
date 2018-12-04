@@ -6,8 +6,14 @@
   <strong>Description:</strong>
   <%= @article.description %>
 </p>
-<p>
-    In Category: <%= @article.category %>
+<p>  
+   <strong>Category:</strong>
+   <%= @article.category.name %>
 </p>
+<p>  
+   <strong>Author:</strong>
+   <%= @article.author.name %>
+</p>
+
 <%= link_to 'Edit', edit_article_path(@article) %>
 <%= link_to 'Back', articles_path %>

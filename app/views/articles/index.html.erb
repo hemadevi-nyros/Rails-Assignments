@@ -7,6 +7,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Category</th>
+        <th>Author</th>
         <th colspan="4">Actions</th>
      </tr>
    </thead>
@@ -15,7 +16,8 @@
         <tr>
           <td><%= article.name %></td>
           <td><%= article.description %></td>
-          <td><%= article.category %></td>
+          <td><%= article.category.name %></td>
+          <td><%= article.author.name %></td>
           <td><%= link_to 'Show', article_path(article), class: 'btn btn-info' %>
             <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
             <%= link_to 'Destroy', article_path(article),

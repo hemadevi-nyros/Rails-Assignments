@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	def index
+  def index
     @articles = Article.all
   end
  
@@ -9,26 +9,32 @@ class ArticlesController < ApplicationController
  
   def new
     @article = Article.new
+    @categories = Category.all.map{|cat| [ cat.name, cat.id ] }
+    @author = Author.all.map{|auth| [ auth.name, auth.id ] }
   end
  
   def edit
     @article = Article.find(params[:id])
+    @categories = Category.all.map{|cat| [ cat.name, cat.id ] }
+    @authors = Author.all.map{|auth| [ auth.name, auth.id] }
   end
  
   def create
    @article = Article.new(article_params)
-
-     if  @article.save
-       redirect_to @article, notice: 'Article was successfully created'
-     else
-       render :new
-     end 
-
+   if  @article.save
+    redirect_to @article, notice: 'Article has been created.'
+   else
+   render :new
+   end 
+   @article.category_id = params[:category_id]
+   @article.author_id = params[:author_id]
   end
  
   def update
     @article = Article.find(params[:id])
- 
+    @article.category_id = params[:category_id]
+    @article.author_id = params[:author_id]
+    @article.skip_name_validation = true
     if @article.update(article_params)
       redirect_to @article
     else
@@ -44,9 +50,9 @@ class ArticlesController < ApplicationController
   end
  
   private
-    def article_params
-      params.require(:article).permit( :name, :description, :category, :upload, :checkbox)
-    end
+  def article_params
+    params.require(:article).permit( :name, :description, :category_id, :category_name, :author_id, :author_name, :upload, :is_published)
+  end
 end
 
 

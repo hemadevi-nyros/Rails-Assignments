@@ -1,2 +1,48 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.error_messages{
+	width: 400px;
+	border: 2px solid #CF0000;
+	padding: 0px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+	font-size: 12px;
+}
+
+.error_message h2{
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 10px;
+	font-size: 12px;
+	margin: 0;
+	background-color: #c00;
+	color: #fff;
+}
+
+.error_message p{
+	margin: 8px 10px;
+}
+
+.field_with_errors {
+	display: inline;
+}
+
+.field_with_errors{
+	color: #D00;
+	padding-left: 5px;
+	font-size: 12px;
+}
+
+.field_with_errors .message{
+    color:red
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}

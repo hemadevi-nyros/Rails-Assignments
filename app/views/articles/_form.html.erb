@@ -7,9 +7,13 @@
     <%= form.label :description %><br>
     <%= form.text_area :description, class: 'form-control' %>
  </div>
-  <div class="form-group">
-    <%= form.label :category %><br>
-   <%= form.select :category, [["Action","Action"], ["Horror","Horror"], ["Adventure","Adventure"], ["Kids","Kids"], ["Comedy","Comedy"], ["Tech","Tech"], ["Love","Love"], ], { prompt: "Select..." }, { class: "form-control", required: true } %>
+ <div class="form-group">
+   <%= form.label :category %><br>
+   <%= form.collection_select :category_id,  Category.all, :id, :name, :prompt => "Select a Category" %>
+ </div>
+ <div class="form-group">
+   <%= form.label :author %><br>
+   <%= form.collection_select :author_id, Author.all, :id, :name, :prompt => "Select a Author" %>
  </div>
  <div class="form-group">
    <%= form.label :upload %><br>  
