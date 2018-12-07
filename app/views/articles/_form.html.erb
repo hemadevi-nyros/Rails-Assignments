@@ -9,15 +9,25 @@
  </div>
  <div class="form-group">
    <%= form.label :category %><br>
-   <%= form.collection_select :category_id,  Category.all, :id, :name, :prompt => "Select a Category" %>
+   <div class= "form-control">
+     <%= form.collection_select :category_id,  Category.all, :id, :name, :prompt => "Select a Category" %>
+    </div>
  </div>
  <div class="form-group">
    <%= form.label :author %><br>
-   <%= form.collection_select :author_id, Author.all, :id, :name, :prompt => "Select a Author" %>
+   <div class= "form-control">
+     <%= form.collection_select :author_id, Author.all, :id, :name, :prompt => "Select a Author" %>
+    </div>
+ </div>
+ <div class="form-group">
+   <%= form.label :language %><br>
+   <div class= "form-control">
+     <%= form.collection_select :language_id, Language.all, :id, :name, :prompt => "Select a Language" %>
+    </div>
  </div>
  <div class="form-group">
    <%= form.label :upload %><br>  
-   <%= form.file_field :attachment %>   
+   <%= form.file_field :attachment, class: 'form-control' %>   
   </div>
   <div class="form-group"> 
     <%= form.check_box :is_published %><%= form.label :is_published %> 

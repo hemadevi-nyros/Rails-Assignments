@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_130548) do
+ActiveRecord::Schema.define(version: 2018_12_06_083806) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 2018_12_05_130548) do
     t.bigint "category_id"
     t.bigint "author_id"
     t.string "status"
+    t.bigint "language_id"
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["category_id"], name: "index_articles_on_category_id"
+    t.index ["language_id"], name: "index_articles_on_language_id"
   end
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -38,6 +40,12 @@ ActiveRecord::Schema.define(version: 2018_12_05_130548) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -47,4 +55,5 @@ ActiveRecord::Schema.define(version: 2018_12_05_130548) do
 
   add_foreign_key "articles", "authors"
   add_foreign_key "articles", "categories"
+  add_foreign_key "articles", "languages"
 end
