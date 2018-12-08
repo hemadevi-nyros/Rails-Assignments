@@ -1,4 +1,4 @@
 class Author < ApplicationRecord
-	has_many :articles
-	validates_associated :articles
+  has_many :articles
+  validates_associated :articles
 end
