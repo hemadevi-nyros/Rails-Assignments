@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
  
   def new
     @article = Article.new
+    @languages= Language.all
     @categories = Category.all.map{|cat| [ cat.name, cat.id ] }
     @author = Author.all.map{|auth| [ auth.name, auth.id ] }
     @language = Language.all.map{|lang| [ lang.name, lang.id] }
@@ -53,7 +54,7 @@ class ArticlesController < ApplicationController
  
   private
   def article_params
-    params.require(:article).permit( :name,:description,:category_id,:category_name,:author_id,:author_name,:language_id,:language_name,:upload,:is_published )
+    params.require(:article).permit( :name,:description,:category_id,:category_name,:author_id,:author_name, :language_id, :language_name,:upload,:is_published )
   end
 end
 

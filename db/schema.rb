@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_083806) do
+ActiveRecord::Schema.define(version: 2018_12_10_095558) do
+
+  create_table "article_languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "language_id"
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_languages_on_article_id"
+    t.index ["language_id"], name: "index_article_languages_on_language_id"
+  end
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -22,10 +31,13 @@ ActiveRecord::Schema.define(version: 2018_12_06_083806) do
     t.bigint "category_id"
     t.bigint "author_id"
     t.string "status"
-    t.bigint "language_id"
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["category_id"], name: "index_articles_on_category_id"
-    t.index ["language_id"], name: "index_articles_on_language_id"
+  end
+
+  create_table "articles_languages", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "language_id", null: false
+    t.bigint "article_id", null: false
   end
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -53,7 +65,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_083806) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "article_languages", "articles"
+  add_foreign_key "article_languages", "languages"
   add_foreign_key "articles", "authors"
   add_foreign_key "articles", "categories"
-  add_foreign_key "articles", "languages"
 end

@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :category
   belongs_to :author
-  has_many :languages
+  has_and_belongs_to_many :languages
   after_destroy :log_destroy_action
   def log_destroy_action
     puts 'Article destroyed'
