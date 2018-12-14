@@ -10,6 +10,14 @@ class ArticlesController < ApplicationController
     @articles = Article.where.not(author_id: 1)
     @articles = Article.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
     @articles = Article.where(name: "Moral words").or(Article.where(category_id: 2))
+    @articles = Article.order(:created_at)
+    @all_articles_count = Article.count :all
+    @articles = Author.joins("INNER JOIN articles ON articles.author_id = articles.id AND articles.is_published = 't'")
+    @articles = Article.joins(:category, :languages)
+    @articles = Article.includes(:category, :author)
+    @articles = Article.created_before(Time.zone.now)
+    @all_articles = Article.group(:is_published).count
+    @article = Article.select("articles.id, count(authors.id) as ct").joins(:authors).group("articles.id").having("count(authors.id) > ?", 3)
   end
  
   def show

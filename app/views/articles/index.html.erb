@@ -1,59 +1,63 @@
-<div class="list">
-  <div class="card">
-    <div class="card-header">
-      <%= link_to 'Articles', articles_path, class: 'btn btn-primary' %>
-      <hr>
-    </div>
-    <div class="card-body">
-      <div class="new">
-       <%= link_to 'New article', new_article_path, class: 'btn btn-info' %>
-      </div>
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Author</th>
-            <th>Language</th>
-            <th colspan="4">Actions</th>
-         </tr>
-       </thead>
-       <tbody>
-         <% @articles.find_each do |article| %>
-           <tr>
-             <td><%= article.name %></td>
-             <td><%= article.description %></td>
-             <td><%= link_to article.category.name, article_path(article),{:class=>'btn btn-success btn-sm'} %></td>
-             <td><%= article.author.name %></td>
-             <td><%= article.language_id %></td>
-             <td><%= link_to 'Show', article_path(article), class: 'btn btn-info' %>
-               <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
-               <%= link_to 'Destroy', '#', "data-toggle"=>"modal", "data-target" => "#delete-#{article.id}",:class=>'btn btn-danger'%>
-               <div class="modal fade" id="delete-<%= article.id %>" role="dialog">
-                 <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <a class="close" data-dismiss="modal">×</a>
-                        <p>Confirmation Box</p>
-                      </div>
-                      <div class="modal-body">
-                        <p>Are you sure to delete this article?</p>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#" data-dismiss="modal" class="btn btn-default">No</a>
-                        <%= link_to 'Yes', article_path(article), method: :delete, :class => 'btn btn-danger' %>
-                      </div>
+<div class="container my_table">
+ <div class="col-sm-12">
+   <div class="card">
+     <div class="card-header">
+        <%= link_to 'Articles', articles_path, class: 'btn btn-primary' %>
+        <hr>
+     </div>
+     <div class="card-body">
+       <div class="new">
+         <%= link_to 'New article', new_article_path, class: 'btn btn-info' %>
+        </div>
+        <p><%= @all_articles_count %> articles in total</p>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+             <th>Name</th>
+             <th>Description</th>
+             <th>Category</th>
+             <th>Author</th>
+             <th>Language</th>
+             <th colspan="4">Actions</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @articles.find_each do |article| %>
+             <tr>
+                <td><%= article.name %></td>
+                <td><%= article.description %></td>
+                <td><%= link_to article.category.name, article_path(article),{:class=>'btn btn-success btn-sm'} %></td>
+                <td><%= article.author.name %></td>
+                <td><%= article.language_id %></td>
+                <td><%= link_to 'Show', article_path(article), class: 'btn btn-info' %>
+                  <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
+                  <%= link_to 'Destroy', '#', "data-toggle"=>"modal", "data-target" => "#delete-#{article.id}",:class=>'btn btn-danger'%>
+                  <div class="modal fade" id="delete-<%= article.id %>" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <a class="close" data-dismiss="modal">×</a>
+                          <p>Confirmation Box</p>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you sure to delete this article?</p>
+                       </div>
+                       <div class="modal-footer">
+                         <a href="#" data-dismiss="modal" class="btn btn-default">No</a>
+                         <%= link_to 'Yes', article_path(article), method: :delete, :class => 'btn btn-danger' %>
+                       </div>
+                     </div>
                    </div>
                  </div>
-                </div>
-             </td>
-           </tr>
-         <% end %>
-       </tbody>
-      </table>
-    </div>  
-  </div>
+               </td>
+             </tr>
+           <% end %>
+          </tbody>
+        </table>
+        <p><%= @all_articles %> articles are published</p>
+      </div>  
+    </div>
+ </div>
 </div>
 
 

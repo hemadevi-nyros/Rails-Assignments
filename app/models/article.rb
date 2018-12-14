@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   belongs_to :category
   belongs_to :author
   has_and_belongs_to_many :languages
+  scope :created_before, ->(time) { where("created_at < ?", time) }
   after_destroy :log_destroy_action
   after_create :article_publishing 
   
