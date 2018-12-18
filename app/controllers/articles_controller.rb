@@ -18,6 +18,10 @@ class ArticlesController < ApplicationController
     @articles = Article.created_before(Time.zone.now)
     @all_articles = Article.group(:is_published).count
     @article = Article.select("articles.id, count(authors.id) as ct").joins(:authors).group("articles.id").having("count(authors.id) > ?", 3)
+    respond_to do |format|
+      format.html 
+      format.xml 
+    end
   end
  
   def show
