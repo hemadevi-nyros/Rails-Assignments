@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_033244) do
+ActiveRecord::Schema.define(version: 2018_12_20_120137) do
 
   create_table "article_languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "language_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_033244) do
     t.bigint "author_id"
     t.string "status"
     t.bigint "language_id"
+    t.string "content"
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["language_id"], name: "index_articles_on_language_id"

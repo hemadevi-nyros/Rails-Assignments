@@ -1,22 +1,32 @@
-<p>
-  <strong>Name:</strong>
-  <%= @article.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @article.description %>
-</p>
-<p>  
-  <strong>Category:</strong>
-  <%= @article.category.name %>
-</p>
-<p>  
-  <strong>Author:</strong>
-  <%= @article.author.name %>
-</p>
-<p>  
-  <strong>Language:</strong>
-  <%= @article.language_id %>
-</p>
-<%= link_to 'Edit', edit_article_path(@article) %>
-<%= link_to 'Back', articles_path %>
+<div class="container my_card">
+ <div class="col-md-6 col-md-offset-3">
+    <div class="card">
+      <div class="card-header">
+        <%= @article.name %>
+      </div>
+      <div class="card-body">
+        <div class="col-md-12 mx-auto">
+          <%= label_tag(:description) %>
+          <%= @article.description %>
+          <br>
+          <%= label_tag(:category) %>
+          <%= @article.category.name %>
+          <br>
+          <%= label_tag(:author) %>
+          <%= @article.author.name %>
+          <br>
+          <%= label_tag(:content) %>
+          <%= @article.content %>
+          <%= image_tag @article.upload.url, class: 'my_image'%>
+          <br>
+          <%= link_to 'Back', articles_path, class: 'btn btn-warning pull-left' %>
+          <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-success pull-right' %>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+
+
