@@ -22,7 +22,11 @@ gem 'jquery-rails'
 
 gem 'client_side_validations'
 
+gem 'simple_form'
+
 gem 'builder'
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

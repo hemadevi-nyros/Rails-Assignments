@@ -18,9 +18,11 @@ class ArticlesController < ApplicationController
     @articles = Article.created_before(Time.zone.now)
     @all_articles = Article.group(:is_published).count
     @article = Article.select("articles.id, count(authors.id) as ct").joins(:authors).group("articles.id").having("count(authors.id) > ?", 3)
+    current_article = Article.find_by_id(session[:current_article_id])
     respond_to do |format|
       format.html 
-      format.xml 
+      format.xml
+      format.json { render :json => @articles}
     end
   end
  

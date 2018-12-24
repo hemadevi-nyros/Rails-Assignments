@@ -52,7 +52,6 @@ margin-bottom: 5px;
 }
 body{
 background: #ccc!important;
- padding-top: 70px; 
 }
 * {
  box-sizing: border-box;
@@ -80,18 +79,24 @@ width: auto;
 border: 1px solid #ccc;
 background-color: white;
 }
+.article_card{
+ padding-top: 150px;
+}
 .article_card .col-md-3 .card{
 background: #fff;
-overflow: hidden;
-margin: 10px auto;
+padding: 20px;
 border-radius: 5px;
 vertical-align: middle;
+height: 280px;
 }
 .article_card .card .card-header{
 font: 25px bold;
 border-bottom: 1px solid #ccc;
 padding: 10px;
 margin-bottom: 15px;
+}
+.article_card .card .card_body{
+	overflow: auto;
 }
 .article_card .row {
 display: flex;
@@ -114,4 +119,16 @@ padding: 0 4px;
     flex: 100%;
     max-width: 100%;
   }
+}
+.my_nav{
+	padding: 15px;
+}
+.my_nav ul{
+	position:relative;
+	left:40px;
+}
+.my_nav .logo{
+  font:30px bold arial;
+  position: relative;
+  left: 50px;
 }

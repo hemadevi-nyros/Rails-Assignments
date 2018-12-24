@@ -1,24 +1,29 @@
 <nav class="navbar navbar-default navbar-expand-lg navbar-fixed-top">
-  <div class="container-fluid">    
-    <div class="navbar-header">
-     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> 
-      <a class=navbrand href="#"></a>
-   </div> 
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">  
-        <li class="active"><%= link_to 'Home' %></li>
-        <li><%= link_to 'Post article', new_article_path %></li>
-        <li><%= link_to 'About' %></li>
-      </ul>
+  <div class="container-fluid my_nav">
+   <div class="row">  
+     <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <h3 class="logo">Articles</h3>
+     </div>
+     <%= link_to 'signin', log_in_path, {:class =>"btn btn-success pull-right"} %>
+   </div>
+   <div class="row">
+     <div class="collapse navbar-collapse">
+       <ul class="nav navbar-nav">  
+          <li><%= link_to 'Home', articles_path %></li>
+          <li><%= link_to 'Post article', new_article_path %></li>
+          <li><%= link_to 'About' %></li>
+       </ul>
+     </div>
    </div>
  </div>
 </nav>
 <% @articles.in_groups_of(4, false).each do |group| %>
-  <div class="container-fluid article_card">
+  <div class="container article_card">
     <div class="row">
      <% group.each do |article| %>
      <div class="col-md-3">
@@ -62,6 +67,6 @@
        </div>
      </div>
      <% end %>
-   </div>
+    </div>
  </div>                      
 <% end %> 

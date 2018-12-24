@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'users/index'
+  get 'users/new'
   get 'categories/index'
   get 'categories/show'
   get 'authors/index'
@@ -9,4 +12,11 @@ Rails.application.routes.draw do
   get 'employees/edit'
   resources :articles
   root to: "articles#index"
+  
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
+  resources :users
+  resources :sessions
 end
