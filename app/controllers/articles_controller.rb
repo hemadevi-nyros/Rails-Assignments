@@ -1,28 +1,21 @@
 class ArticlesController < ApplicationController
+  USER_ID, PASSWORD = "Soni", "123"
+  # Require authentication only for edit and delete operation
+  before_action :authenticate, :only => [ :edit, :delete ]
+  before_action :check_authorization, :only => [ :show]
+  
   def index
     @articles = Article.all
-    @articles = Article.first(3)
-    @articles = Article.last(1)
-    @articles = Article.take(2)
-    @articles = Article.where(name: "Computers")
-    @articles = Article.where(["name = ? AND author_id= ?", "Moral words", 1])
-    @articles = Article.where(category_id: [1,2])
-    @articles = Article.where.not(author_id: 1)
-    @articles = Article.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight)
-    @articles = Article.where(name: "Moral words").or(Article.where(category_id: 2))
-    @articles = Article.order(:created_at)
-    @all_articles_count = Article.count :all
-    @articles = Author.joins("INNER JOIN articles ON articles.author_id = articles.id AND articles.is_published = 't'")
-    @articles = Article.joins(:category, :languages)
-    @articles = Article.includes(:category, :author)
-    @articles = Article.created_before(Time.zone.now)
-    @all_articles = Article.group(:is_published).count
-    @article = Article.select("articles.id, count(authors.id) as ct").joins(:authors).group("articles.id").having("count(authors.id) > ?", 3)
-    current_article = Article.find_by_id(session[:current_article_id])
     respond_to do |format|
       format.html 
       format.xml
       format.json { render :json => @articles}
+      format.pdf do
+        pdf = ArticlePdf.new(@article)
+        send_data pdf.render, filename:"article_#{@article_name}.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
     end
   end
  
@@ -79,6 +72,16 @@ class ArticlesController < ApplicationController
   
   def article_params
     params.require(:article).permit( :name, :description,  :content, :category_id, :category_name, :author_id, :author_name, :language_id, :language_name, :upload, :is_published )
+  end
+   
+  def authenticate
+    authenticate_or_request_with_http_basic do |id, password| 
+      id == USER_ID && password == PASSWORD
+    end
+  end
+
+  def check_authorization
+    raise User::NotAuthorized unless current_user
   end
 end
 

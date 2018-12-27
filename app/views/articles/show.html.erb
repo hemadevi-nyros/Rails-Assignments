@@ -19,6 +19,8 @@
           <%= @article.content %>
           <%= image_tag @article.upload.url, class: 'my_image'%>
           <br>
+          <%= link_to "Printable Receipt (PDF)", articles_path(@articles, format: 'pdf') %>
+          <br>
           <%= link_to 'Back', articles_path, class: 'btn btn-warning pull-left' %>
           <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-success pull-right' %>
         </div>

@@ -132,3 +132,6 @@ padding: 0 4px;
   position: relative;
   left: 50px;
 }
+ #user_nav{
+  float:right; 
+}
