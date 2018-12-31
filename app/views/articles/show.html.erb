@@ -19,6 +19,12 @@
           <%= @article.content %>
           <%= image_tag @article.upload.url, class: 'my_image'%>
           <br>
+          <h3>Comments</h3>
+          <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+          <%= render partial: 'comments/form' %>
+          <br>
+          <h3>Comments (<%= @article.comments.size %>)</h3>
+          <br>
           <%= link_to "Printable Receipt (PDF)", articles_path(@articles, format: 'pdf') %>
           <br>
           <%= link_to 'Back', articles_path, class: 'btn btn-warning pull-left' %>

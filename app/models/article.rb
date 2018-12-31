@@ -6,6 +6,7 @@ class Article < ApplicationRecord
   mount_uploader :upload, UploadUploader
   belongs_to :category
   belongs_to :author
+  has_many :comments
   has_and_belongs_to_many :languages
   scope :created_before, ->(time) { where("created_at < ?", time) }
   after_destroy :log_destroy_action

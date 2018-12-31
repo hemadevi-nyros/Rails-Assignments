@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to articles_path, notice:"Successfully deleted"
   end
- 
+
   private
   
   def article_params

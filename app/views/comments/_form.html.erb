@@ -1,0 +1,14 @@
+<h3>Post a Comment</h3>
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :Commenter_name %><br/>
+    <%= f.text_field :author_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %><br/>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Submit',  class: 'btn btn-success' %>
+  </div>
+<% end %>

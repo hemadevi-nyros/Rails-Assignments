@@ -1,20 +1,13 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-  get 'users/index'
-  get 'users/new'
-  get 'categories/index'
-  get 'categories/show'
-  get 'authors/index'
-  get 'authors/show'
-  get 'employees/index'
-  get 'employees/show'
-  get 'employees/new'
-  get 'employees/edit'
-  resources :articles
+  get "log_out", to: "sessions#destroy", :as => "log_out"
+  get "log_in", to: "sessions#new", :as => "log_in"
+  get "sign_up", to: "users#new", :as => "sign_up"
+  resources :articles, :users, :sessions
   root to: "articles#index"
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
-  resources :users
-  resources :sessions
+  resources :articles do
+    resources :comments, shallow: true
+  end
+  get 'articles/:id', to: 'articles#show'
+  match 'users', to: 'users#show', via: [:get, :post]
 end
