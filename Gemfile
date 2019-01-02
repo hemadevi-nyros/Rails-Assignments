@@ -28,6 +28,8 @@ gem 'builder'
 
 gem 'prawn'
 
+gem 'mail'
+
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 gem 'uglifier', '>= 1.3.0'

@@ -11,8 +11,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    # binding.pry
+
     if  @user.save
+      UserMailer.signup_confirmation(@user).deliver
       redirect_to log_in_url, notice: 'Successfully created' 
     else
       render :new
