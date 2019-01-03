@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :authorize, only:[:new, :create]
+  
+  def deliver
+    @user = User.find(params[:id]) 
+    UserMailer.delay(run_at: 5.minutes.from_now).signup_confirmation(@user).deliver(params[:id])
+    redirect_to log_in_url, notice: 'Successfully delivered' 
+  end
+ 
   def new
     @user = User.new
   end
@@ -13,7 +20,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if  @user.save
-      UserMailer.signup_confirmation(@user).deliver
       redirect_to log_in_url, notice: 'Successfully created' 
     else
       render :new

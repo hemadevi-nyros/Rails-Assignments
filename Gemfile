@@ -22,13 +22,15 @@ gem 'jquery-rails'
 
 gem 'client_side_validations'
 
-gem 'simple_form'
-
 gem 'builder'
 
 gem 'prawn'
 
 gem 'mail'
+
+gem 'delayed_job_active_record'
+
+gem 'daemons'
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
