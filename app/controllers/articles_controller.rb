@@ -1,9 +1,5 @@
 class ArticlesController < ApplicationController
-  USER_ID, PASSWORD = "Soni", "123"
-  # Require authentication only for edit and delete operation
-  before_action :authenticate, :only => [ :edit, :delete ]
-  before_action :check_authorization, :only => [ :show]
-  
+  before_action :authenticate_user!
   def index
     @articles = Article.all
     respond_to do |format|
@@ -41,7 +37,7 @@ class ArticlesController < ApplicationController
   def create
    @article = Article.new(article_params)
    if  @article.save
-     redirect_to @article, notice: 'Successfully created' 
+     redirect_to @article 
    else
      render :new
    end 
@@ -71,18 +67,9 @@ class ArticlesController < ApplicationController
   private
   
   def article_params
-    params.require(:article).permit( :name, :description,  :content, :category_id, :category_name, :author_id, :author_name, :language_id, :language_name, :upload, :is_published )
+    params.require(:article).permit( :name, :description, :content, :category_id, :category_name, :author_id, :author_name, :language_id, :language_name, :upload, :is_published )
   end
    
-  def authenticate
-    authenticate_or_request_with_http_basic do |id, password| 
-      id == USER_ID && password == PASSWORD
-    end
-  end
-
-  def check_authorization
-    raise User::NotAuthorized unless current_user
-  end
 end
 
 
